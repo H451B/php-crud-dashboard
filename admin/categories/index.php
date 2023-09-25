@@ -1,31 +1,64 @@
 <?php
+$webroot = 'http://localhost/php-crud-dashboard/';
+// Connection to Database
+$servername = "localhost";
+$username = "root";
+$password = "";
 
-    // Connection to Database
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
 
+$conn = new PDO("mysql:host=$servername;dbname=php00", $username, $password);
+// set the PDO error mode to exception
+$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $conn = new PDO("mysql:host=$servername;dbname=crud_pb", $username, $password);
-    // set the PDO error mode to exception
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    $query = "SELECT * FROM `categories`";
-    $stmt = $conn->prepare($query);
-    $result = $stmt->execute();
-    $products = $stmt->fetchAll();
+$query = "SELECT * FROM `categories` WHERE is_deleted=0";
+$stmt = $conn->prepare($query);
+$result = $stmt->execute();
+$products = $stmt->fetchAll();
 
 ?>
 
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bootstrap demo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-  </head>
-  <body>
+</head>
+
+<body>
+    <header>
+        <div class="top-bar">
+            <nav class="navbar navbar-expand-lg bg-success">
+                <div class="container-fluid">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse d-flex justify-content-center" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link active text-light" aria-current="page" href="#">Dashboard</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" aria-current="page" href="<?= $webroot ?>admin/brands/index.php">Brands</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" href="<?= $webroot ?>admin/categories/index.php">Categories</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" href="<?= $webroot ?>admin/products/index.php">Products</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" href="#">Signout</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
     <section>
         <div class="container">
             <div class="row d-flex justify-content-center">
@@ -35,45 +68,56 @@
                         <li class="nav-item">
                             <a class="nav-link text-success" aria-current="page" href="create.php">Add New</a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link text-success" href="index.php">Show Data</a>
+                        </li> -->
+                        <li class="nav-item">
+                            <a class="nav-link text-success" href="trashIndex.php">Trashed Items</a>
                         </li>
                     </ul>
 
                     <table class="table">
-                    <thead>
-                        <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Link</th>
-                        <th scope="col">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php 
-                        foreach($products as $product):
-                        ?>
-                        <tr>
-                            <th scope="row"><?php echo $product["id"];  ?></th>
-                            <td><?= $product["name"];  ?></td>
-                            <td><?= $product["link"];  ?></td>
-                            <td>
-                                <a href="show.php?id=<?= $product['id'];?>">Show</a> | 
-                                <a href="edit.php?id=<?= $product['id'];?>">Edit</a> | 
-                                <a href="delete.php?id=<?= $product['id'];?>" onclick="return confirm('Are  you sure you want to delete?')">Delete</a>
-                            </td>
-                        </tr>
-                        <?php endforeach;?>
-                    </tbody>
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Title</th>
+                                <th scope="col">Picture</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            foreach ($products as $product) :
+                            ?>
+                                <tr>
+                                    <th scope="row"><?php echo $product["id"];  ?></th>
+                                    <td><?= $product["title"];  ?></td>
+                                    <td><img class="img-fluid" style="height: 100px;width:100px;" src="<?= $webroot ?>uploads/categories/<?= $product["picture"];  ?>" alt="category image"></td>
+                                    <td>
+                                        <?php
+                                        echo ($product["is_active"] == 0) ? "Inactive" : "Active";
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <a href="show.php?id=<?= $product['id']; ?>">Show</a> |
+                                        <a href="edit.php?id=<?= $product['id']; ?>">Edit</a> |
+                                        <a href="trash.php?id=<?= $product['id']; ?>">Trash</a>
+                                        <!-- <a href="delete.php?id=<?= $product['id']; ?>" onclick="return confirm('Are  you sure you want to delete?')">Delete</a> -->
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </section>
-  
+
 
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-  </body>
+</body>
+
 </html>

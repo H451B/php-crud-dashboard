@@ -45,6 +45,7 @@ category:
     title
     is_active
     is_deleted
+    picture
     created_at
     updated_at
 

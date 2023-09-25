@@ -1,9 +1,12 @@
 <?php
 
     $_getId = $_GET["id"];
+    $_is_deleted = 1;
+
     // Connection to Database
     $servername = "localhost";
     $username = "root";
+    
     $password = "";
 
 
@@ -11,9 +14,10 @@
     // set the PDO error mode to exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $query = "DELETE FROM categories WHERE `id` = :id";
+    $query = "UPDATE `categories` SET `is_deleted` = :is_deleted WHERE `id` = :id ";
     $stmt = $conn->prepare($query);
     $stmt->bindParam(':id', $_getId);
+    $stmt->bindParam(':is_deleted', $_is_deleted);
     $result = $stmt->execute();
     
     header("location:index.php");

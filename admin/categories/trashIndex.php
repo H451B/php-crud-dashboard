@@ -1,5 +1,24 @@
 <?php
 $webroot = 'http://localhost/php-crud-dashboard/';
+// Connection to Database
+$servername = "localhost";
+$username = "root";
+$password = "";
+
+
+$conn = new PDO("mysql:host=$servername;dbname=php00", $username, $password);
+// set the PDO error mode to exception
+$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+$query = "SELECT * FROM `categories` WHERE is_deleted=1";
+$stmt = $conn->prepare($query);
+$result = $stmt->execute();
+$products = $stmt->fetchAll();
+
+
+
+
+
 ?>
 
 <!doctype html>
@@ -26,7 +45,7 @@ $webroot = 'http://localhost/php-crud-dashboard/';
                                 <a class="nav-link active text-light" aria-current="page" href="#">Dashboard</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-light" aria-current="page" href="#">Brands</a>
+                                <a class="nav-link text-light" aria-current="page" href="<?= $webroot ?>admin/brands/index.php">Brands</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-light" href="<?= $webroot ?>admin/categories/index.php">Categories</a>
@@ -43,43 +62,41 @@ $webroot = 'http://localhost/php-crud-dashboard/';
             </nav>
         </div>
     </header>
-
     <section>
         <div class="container">
             <div class="row d-flex justify-content-center">
-                <div class="col-sm-6">
-                    <h1 class="text-center fs-3 fw-bolder mt-3">Add New Categories</h1>
+                <div class="col-sm-8">
+                    <h1 class="text-center fs-3 fw-bolder mt-3">Categories's Trash Items</h1>
                     <ul class="nav d-flex justify-content-center mb-4 fw-bolder .">
                         <li class="nav-item">
-                            <a class="nav-link text-success" aria-current="page" href="create.php">Add New</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-success" href="index.php">Show Data</a>
+                            <a class="nav-link text-success" aria-current="page" href="index.php">Home</a>
                         </li>
                     </ul>
-                    <form action="store.php" method="post" enctype="multipart/form-data">
 
-                        <div class="mb-3">
-                            <label for="inputTitle" class="form-label">Title: </label>
-                            <input type="text" class="form-control" id="inputTitle" name="title" value="" required>
-                        </div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Title</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            foreach ($products as $product) :
+                            ?>
+                                <tr>
+                                    <th scope="row"><?php echo $product["id"];  ?></th>
+                                    <td><?= $product["title"];  ?></td>
 
-                        <div class="mb-3">
-                            <label for="inputPicture" class="form-label">Picture: </label>
-                            <input type="file" class="form-control" id="inputPicture" name="picture" value="">
-                        </div>
-
-                        <div class="form-check mb-3">
-                            <label class="form-check-label" for="flexCheckDefault">
-                                Is Active?
-                            </label>
-                            <input class="form-check-input" name="is_active" type="checkbox" value="1" id="flexCheckDefault">
-
-                        </div>
-
-                        <button type="submit" class="btn btn-primary">Submit</button>
-
-                    </form>
+                                    <td>
+                                        <a href="restore.php?id=<?= $product['id']; ?>">Restore</a> |
+                                        <a href="delete.php?id=<?= $product['id']; ?>" onclick="return confirm('Are  you sure you want to delete?')">Delete</a>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

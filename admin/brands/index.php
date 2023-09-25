@@ -33,7 +33,7 @@ $brands = $stmt->fetchAll();
 </head>
 
 <body>
-<header>
+    <header>
         <div class="top-bar">
             <nav class="navbar navbar-expand-lg bg-success">
                 <div class="container-fluid">
@@ -109,7 +109,7 @@ $brands = $stmt->fetchAll();
                                     <td>
                                         <a href="show.php?id=<?= $brand['id']; ?>">Show</a> |
                                         <a href="edit.php?id=<?= $brand['id']; ?>">Edit</a> |
-                                        <a href="trash.php?id=<?= $brand['id']; ?>">Trash</a> 
+                                        <a href="trash.php?id=<?= $brand['id']; ?>">Trash</a>
                                         <!-- <a href="delete.php?id=<?= $brand['id']; ?>" onclick="return confirm('Are  you sure you want to delete?')">Delete</a> -->
                                     </td>
                                 </tr>
