@@ -1,5 +1,5 @@
 <?php
-
+$webroot = 'http://localhost/php-crud-dashboard/';
 // Connection to Database
 $servername = "localhost";
 $username = "root";
@@ -32,6 +32,36 @@ $products = $stmt->fetchAll();
 </head>
 
 <body>
+    <header>
+        <div class="top-bar">
+            <nav class="navbar navbar-expand-lg bg-success">
+                <div class="container-fluid">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse d-flex justify-content-center" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link active text-light" aria-current="page" href="#">Dashboard</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" aria-current="page" href="<?= $webroot ?>admin/brands/index.php">Brands</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" href="<?= $webroot ?>admin/categories/index.php">Categories</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" href="<?= $webroot ?>admin/products/index.php">Products</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" href="#">Signout</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
     <section>
         <div class="container">
             <div class="row d-flex justify-content-center">
