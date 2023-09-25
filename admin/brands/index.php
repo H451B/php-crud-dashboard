@@ -14,7 +14,7 @@ $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $query = "SELECT * FROM `brands` WHERE is_deleted=0";
 $stmt = $conn->prepare($query);
 $result = $stmt->execute();
-$products = $stmt->fetchAll();
+$brands = $stmt->fetchAll();
 
 
 
@@ -49,10 +49,10 @@ $products = $stmt->fetchAll();
                                 <a class="nav-link text-light" aria-current="page" href="#">Brands</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-light" href="#">Categories</a>
+                                <a class="nav-link text-light" href="<?= $webroot ?>admin/categories/index.php">Categories</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-light" href="#">Products</a>
+                                <a class="nav-link text-light" href="<?= $webroot ?>admin/products/index.php">Products</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-light" href="#">Signout</a>
@@ -90,26 +90,27 @@ $products = $stmt->fetchAll();
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
+
                         <tbody>
                             <?php
-                            foreach ($products as $product) :
+                            foreach ($brands as $brand) :
                             ?>
                                 <tr>
-                                    <th scope="row"><?php echo $product["id"];  ?></th>
-                                    <td><?= $product["title"];  ?></td>
+                                    <th scope="row"><?php echo $brand["id"];  ?></th>
+                                    <td><?= $brand["title"];  ?></td>
 
 
                                     <td>
                                         <?php
-                                        echo ($product["is_active"] == 0) ? "Inactive" : "Active";
+                                        echo ($brand["is_active"] == 0) ? "Inactive" : "Active";
                                         ?>
                                     </td>
 
                                     <td>
-                                        <a href="show.php?id=<?= $product['id']; ?>">Show</a> |
-                                        <a href="edit.php?id=<?= $product['id']; ?>">Edit</a> |
-                                        <a href="trash.php?id=<?= $product['id']; ?>">Trash</a> 
-                                        <!-- <a href="delete.php?id=<?= $product['id']; ?>" onclick="return confirm('Are  you sure you want to delete?')">Delete</a> -->
+                                        <a href="show.php?id=<?= $brand['id']; ?>">Show</a> |
+                                        <a href="edit.php?id=<?= $brand['id']; ?>">Edit</a> |
+                                        <a href="trash.php?id=<?= $brand['id']; ?>">Trash</a> 
+                                        <!-- <a href="delete.php?id=<?= $brand['id']; ?>" onclick="return confirm('Are  you sure you want to delete?')">Delete</a> -->
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

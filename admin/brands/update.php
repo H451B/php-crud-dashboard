@@ -15,11 +15,11 @@
     $password = "";
 
 
-    $conn = new PDO("mysql:host=$servername;dbname=hasibdb", $username, $password);
+    $conn = new PDO("mysql:host=$servername;dbname=php00", $username, $password);
     // set the PDO error mode to exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $query = "UPDATE `brands` SET `title` = :title, `link` = :link, `is_active` = :is_active WHERE `id` = :id ";
+    $query = "UPDATE `brands` SET `title` = :title, `link` = :link, `is_active` = :is_active, `updated_at` = NOW() WHERE `id` = :id ";
     $stmt = $conn->prepare($query);
     $stmt->bindParam(':id', $_getId);
     $stmt->bindParam(':title', $_title);
