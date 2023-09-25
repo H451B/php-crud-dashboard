@@ -1,0 +1,63 @@
+----------------Frontend-------------
+HOME:
+    LOGIN(admin) -> DASHBOARD -> CURDS
+    LOGIN(user) -> VIEW [UPCOMING]
+    REG(user) -> VIEW [UPCOMING]
+
+Reg:
+    id
+    user_name
+    first_name
+    last_name
+    email
+    address
+    picture
+    role(user)
+    password
+    confirm_password
+    created_at
+    updated_at
+
+Login: 
+    email
+    password
+         
+
+----------------Backend-------------
+db:
+    php00
+
+admin:
+    username: admin
+    passowrd: admin
+
+brands:
+    id
+    title
+    link
+    is_active
+    is_deleted
+    created_at
+    updated_at
+
+category:
+    id
+    title
+    is_active
+    is_deleted
+    created_at
+    updated_at
+
+products:
+    id
+    title
+    desc
+    price
+    old_price
+    discount_rate
+    category_id
+    brand_id
+    is_active
+    is_deleted
+    created_at
+    updated_at

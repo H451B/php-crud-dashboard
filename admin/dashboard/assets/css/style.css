@@ -1,0 +1,179 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap");
+
+:root {
+    --header-height: 3rem;
+    --nav-width: 68px;
+    --first-color: #ffffff;
+    --first-color-light: #868686;
+    --white-color: #000000;
+    --body-font: 'Nunito', sans-serif;
+    --normal-font-size: 1rem;
+    --z-fixed: 100
+}
+
+*,
+::before,
+::after {
+    box-sizing: border-box
+}
+
+body {
+    background-color: #e4e4e4;
+    position: relative;
+    margin: var(--header-height) 0 0 0;
+    padding: 1rem;
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+    transition: .5s;
+    margin-top: 0rem;
+}
+
+a {
+    text-decoration: none
+}
+
+.l-navbar {
+    position: fixed;
+    top: 0;
+    width: var(--nav-width);
+    height: 100vh;
+    background-color: var(--first-color);
+    padding: .5rem 1rem 0 0;
+    transition: .5s;
+    z-index: var(--z-fixed);
+}
+
+.nav {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden
+}
+
+.nav_logo,
+.nav_link {
+    display: grid;
+    grid-template-columns: max-content max-content;
+    align-items: center;
+    column-gap: 1rem;
+    padding: .5rem 0 .5rem 1.5rem
+}
+
+.nav_logo {
+    margin-bottom: 2rem
+}
+
+.nav_logo-icon {
+    font-size: 1.25rem;
+    color: var(--white-color)
+}
+
+.nav_logo-name {
+    color: var(--white-color);
+    font-weight: 700
+}
+
+.nav_link {
+    position: relative;
+    color: var(--first-color-light);
+    margin-bottom: 1rem;
+    transition: .3s
+}
+
+.nav_link:hover {
+    color: var(--white-color)
+}
+
+.nav_icon {
+    font-size: 1.25rem
+}
+
+.show {
+    left: 0;
+    width: calc(var(--nav-width) + 156px);
+}
+
+.active {
+    color: var(--white-color)
+}
+
+.active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 2px;
+    height: 32px;
+    background-color: var(--white-color)
+}
+
+.height-100 {
+    height: 100vh
+}
+
+@media screen and (max-width: 768px) {
+    body {
+        /* margin: calc(var(--header-height) + 1rem) 0 0 0; */
+        padding-left: calc(var(--nav-width) + 2rem)
+    }
+
+    .l-navbar {
+        left: 0;
+        padding: 1rem 1rem 0 0
+    }
+
+    .show {
+        width: calc(var(--nav-width));
+    }
+    .expanded {
+        left: 0;
+        width: calc(var(--nav-width) + 156px);
+    }
+
+    .main-area{
+        margin:0;
+    }
+}
+
+/* style for index page */
+.row .col-sm-4{
+    padding: 0.25rem;
+}
+.row .col-sm-4 .card{
+    background-color: white;
+    border-radius: 5px;
+    padding: 0.25rem;
+}
+
+
+/* style for pages/vehicles.html page */
+@media screen and (min-width: 768px){
+    .main-area{
+        /* margin-top: 0; */
+        margin-left: calc(var(--nav-width) + 156px)
+    }
+    .expand-collapse-sidebar{
+        display: none;
+        margin: 0;
+    }
+}
+
+.main-area .operation .container-fluid .row {
+    background-color: white;
+    border-radius: 5px;
+}
+
+.main-area .content .container-fluid .row {
+    background-color: white;
+    border-radius: 5px;
+}
+
+.l-navbar .nav .nav_list .list-group{
+    margin-left: 2.5rem;
+}
+.l-navbar .nav .nav_list .list-group .list-group-item{
+    border: none;
+}
+.l-navbar .nav .nav_list .list-group .list-group-item .nav_link{
+    margin-bottom: 0;
+}
