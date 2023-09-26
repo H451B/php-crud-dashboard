@@ -2,49 +2,51 @@
 // echo "<pre>";
 // print_r($_GET);
 // echo "</pre>";
-    $webroot = 'http://localhost/php-crud-dashboard/';
+$webroot = 'http://localhost/php-crud-dashboard/';
 
-    $_getId = $_GET["id"];
-    // Connection to Database
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-
-
-    $conn = new PDO("mysql:host=$servername;dbname=php00", $username, $password);
-    // set the PDO error mode to exception
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    $query = "SELECT * FROM `categories` WHERE id = :id";
-    $stmt = $conn->prepare($query);
-    $stmt->bindParam(':id', $_getId);
-    $result = $stmt->execute();
-    $products = $stmt->fetchAll();
-
-    if ($products[0]["is_active"] == 0) {
-        $iActive = "Inactive";
-    } else {
-        $iActive = "Active";
-    }
+$_getId = $_GET["id"];
+// Connection to Database
+$servername = "localhost";
+$username = "root";
+$password = "";
 
 
-    // echo "<pre>";
-    // print_r($products);
-    // echo "</pre>";
+$conn = new PDO("mysql:host=$servername;dbname=php00", $username, $password);
+// set the PDO error mode to exception
+$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+$query = "SELECT * FROM `categories` WHERE id = :id";
+$stmt = $conn->prepare($query);
+$stmt->bindParam(':id', $_getId);
+$result = $stmt->execute();
+$products = $stmt->fetchAll();
+
+if ($products[0]["is_active"] == 0) {
+    $iActive = "Inactive";
+} else {
+    $iActive = "Active";
+}
+
+
+// echo "<pre>";
+// print_r($products);
+// echo "</pre>";
 ?>
 
 <!doctype html>
-<html lang="en">
-  <head>
+<html lang="en" style="background-color: #F5FEFD;">
+
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-  </head>
-  <body>
-  <header>
+</head>
+
+<body style="background-color: #F5FEFD;">
+    <header class="mx-2 mt-2">
         <div class="top-bar">
-            <nav class="navbar navbar-expand-lg bg-success">
+            <nav class="navbar navbar-expand-lg bg-success" style="border-radius: .4rem;">
                 <div class="container-fluid">
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -55,10 +57,10 @@
                                 <a class="nav-link active text-light" aria-current="page" href="#">Dashboard</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-light" aria-current="page" href="#">Brands</a>
+                                <a class="nav-link text-light" aria-current="page" href="<?= $webroot ?>admin/brands/index.php">Brands</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-light" href="<?= $webroot ?>admin/categories/index.php">Categories</a>
+                                <a class="nav-link text-light fw-bold text-decoration-underline" href="<?= $webroot ?>admin/categories/index.php">Categories</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-light" href="<?= $webroot ?>admin/products/index.php">Products</a>
@@ -85,14 +87,14 @@
                         <li class="nav-item">
                             <a class="nav-link text-success" href="index.php">Show Data</a>
                         </li>
-                    </ul>  
+                    </ul>
 
-                    <dl class="row">
+                    <dl class="row shadow p-3 mb-5 bg-white rounded">
                         <dt class="col-sm-3">Id: </dt>
-                        <dd class="col-sm-9"><?= $products[0]["id"]?></dd>
+                        <dd class="col-sm-9"><?= $products[0]["id"] ?></dd>
 
                         <dt class="col-sm-3">Title: </dt>
-                        <dd class="col-sm-9"><?= $products[0]["title"]?></dd>
+                        <dd class="col-sm-9"><?= $products[0]["title"] ?></dd>
 
                         <dt class="col-sm-3">Is Active: </dt>
                         <dd class="col-sm-9">
@@ -101,7 +103,7 @@
 
                         <dt class="col-sm-3">Picture: </dt>
                         <dd class="col-sm-9">
-                        <img class="img-fluid" style="height: 300px;width:300px;" src="<?= $webroot?>uploads/categories/<?= $products[0]["picture"];  ?>" alt="category image">
+                            <img class="img-fluid" style="height: 300px;width:300px;" src="<?= $webroot ?>uploads/categories/<?= $products[0]["picture"];  ?>" alt="category image">
                         </dd>
 
 
@@ -110,10 +112,11 @@
             </div>
         </div>
     </section>
-  
+
 
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-  </body>
+</body>
+
 </html>

@@ -18,19 +18,19 @@ $products = $stmt->fetchAll();
 ?>
 
 <!doctype html>
-<html lang="en">
+<html lang="en" style="background-color: #F5FEFD;">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <title>Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 </head>
 
-<body>
-    <header>
+<body style="background-color: #F5FEFD;">
+    <header class="mx-2 mt-2">
         <div class="top-bar">
-            <nav class="navbar navbar-expand-lg bg-success">
+            <nav class="navbar navbar-expand-lg bg-success" style="border-radius: .4rem;">
                 <div class="container-fluid">
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -44,7 +44,7 @@ $products = $stmt->fetchAll();
                                 <a class="nav-link text-light" aria-current="page" href="<?= $webroot ?>admin/brands/index.php">Brands</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-light" href="<?= $webroot ?>admin/categories/index.php">Categories</a>
+                                <a class="nav-link text-light fw-bold text-decoration-underline" href="<?= $webroot ?>admin/categories/index.php">Categories</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-light" href="<?= $webroot ?>admin/products/index.php">Products</a>
@@ -76,7 +76,7 @@ $products = $stmt->fetchAll();
                         </li>
                     </ul>
 
-                    <table class="table">
+                    <table class="table shadow p-3 mb-5 bg-white rounded">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
@@ -100,9 +100,9 @@ $products = $stmt->fetchAll();
                                         ?>
                                     </td>
                                     <td>
-                                        <a href="show.php?id=<?= $product['id']; ?>">Show</a> |
-                                        <a href="edit.php?id=<?= $product['id']; ?>">Edit</a> |
-                                        <a href="trash.php?id=<?= $product['id']; ?>">Trash</a>
+                                        <a class="btn btn-primary" href="show.php?id=<?= $product['id']; ?>">Show</a>
+                                        <a class="btn btn-success" href="edit.php?id=<?= $product['id']; ?>">Edit</a>
+                                        <a class="btn btn-danger" href="trash.php?id=<?= $product['id']; ?>">Trash</a>
                                         <!-- <a href="delete.php?id=<?= $product['id']; ?>" onclick="return confirm('Are  you sure you want to delete?')">Delete</a> -->
                                     </td>
                                 </tr>

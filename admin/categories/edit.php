@@ -28,7 +28,7 @@ $products = $stmt->fetch();
 ?>
 
 <!doctype html>
-<html lang="en">
+<html lang="en" style="background-color: #F5FEFD;">
 
 <head>
     <meta charset="utf-8">
@@ -37,10 +37,10 @@ $products = $stmt->fetch();
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 </head>
 
-<body>
-    <header>
+<body style="background-color: #F5FEFD;">
+    <header class="mx-2 mt-2">
         <div class="top-bar">
-            <nav class="navbar navbar-expand-lg bg-success">
+            <nav class="navbar navbar-expand-lg bg-success" style="border-radius: .4rem;">
                 <div class="container-fluid">
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -54,7 +54,7 @@ $products = $stmt->fetch();
                                 <a class="nav-link text-light" aria-current="page" href="<?= $webroot ?>admin/brands/index.php">Brands</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-light" href="<?= $webroot ?>admin/categories/index.php">Categories</a>
+                                <a class="nav-link text-light fw-bold text-decoration-underline" href="<?= $webroot ?>admin/categories/index.php">Categories</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-light" href="<?= $webroot ?>admin/products/index.php">Products</a>
@@ -79,7 +79,7 @@ $products = $stmt->fetch();
                             <a class="nav-link text-success" href="index.php">Show Data</a>
                         </li>
                     </ul>
-                    <form action="update.php" method="post" enctype="multipart/form-data">
+                    <form action="update.php" method="post" enctype="multipart/form-data" class="shadow p-3 mb-5 bg-white rounded">
                         <input type="hidden" class="form-control" id="inputTitle" name="id" value="<?= $products['id']; ?>">
                         <div class="mb-3">
                             <label for="inputTitle" class="form-label">Title: </label>
