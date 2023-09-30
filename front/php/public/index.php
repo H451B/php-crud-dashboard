@@ -15,34 +15,5 @@ include_once ('../views/elements/head.php');
 ?>
 
 
-
-
-
-
-
-
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </body>
 </html>

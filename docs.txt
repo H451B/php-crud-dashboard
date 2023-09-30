@@ -1,3 +1,5 @@
+localhost/front/php/views/elements
+
 ----------------Frontend-------------
 HOME:
     LOGIN(admin) -> DASHBOARD -> CURDS

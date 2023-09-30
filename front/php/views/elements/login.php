@@ -7,7 +7,7 @@ $webroot ="http://localhost/php-crud-dashboard/";
         <!-- <h1 class="fs-4 fw-bold text-secondary text-center mb-4">Login</h1> -->
         <div class="container">
             <div class="row  d-flex justify-content-center">
-                <div class="col-sm-6">
+                <div class="col-sm-6 shadow px-3 py-5 bg-white rounded">
                     <form action="<?= $webroot?>admin/users/login-processor.php" method="post" enctype="multipart/form-data">
 
                         <div class="row mb-3">

@@ -42,7 +42,7 @@ $products = $stmt->fetchAll();
                     <div class="collapse navbar-collapse d-flex justify-content-center" id="navbarNav">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link active text-light" aria-current="page" href="#">Dashboard</a>
+                                <a class="nav-link active text-light" aria-current="page" href="<?= $webroot ?>admin/dashboard.php">Dashboard</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-light" aria-current="page" href="<?= $webroot ?>admin/brands/index.php">Brands</a>
@@ -54,7 +54,7 @@ $products = $stmt->fetchAll();
                                 <a class="nav-link text-light" href="<?= $webroot ?>admin/products/index.php">Products</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-light" href="#">Signout</a>
+                                <a class="nav-link text-light" href="<?= $webroot ?>front/php/public/index.php">Signout</a>
                             </li>
                         </ul>
                     </div>

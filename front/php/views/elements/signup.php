@@ -2,11 +2,11 @@
 <?php
 $webroot ="http://localhost/Hasib/crud/";
 ?>
-<main class="mt-3 d-flex align-items-center" style="height: 60vh;">
+<main class="mt-3 d-flex align-items-center shadow p-3 bg-white rounded" style="height: 60vh;">
         <!-- <h1 class="fs-4 fw-bold text-secondary text-center mb-4">Create An Account</h1> -->
         <div class="container">
             <div class="row  d-flex justify-content-center">
-                <div class="col-sm-7">
+                <div class="col-sm-7 shadow p-3 bg-white rounded">
                     <form action="<?= $webroot?>admin/users/sign-up.php" method="post" enctype="multipart/form-data">
 
 
